@@ -1,0 +1,268 @@
+@charset "UTF-8";
+/* line 5, ../../../../../../../Library/Ruby/Gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  /*text-align: center;*/
+  /*background-color:#000;*/
+  position: relative;
+  height: 100%;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+.fm{
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "メイリオ", Meiryo, 'Noto Serif JP', serif !important;
+}
+
+.fg{
+  font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, Verdana, sans-serif !important;
+}
+
+.hg {
+    font-family: 'ヒラギノ丸ゴ ProN','Hiragino Maru Gothic ProN',sans-serif;
+}
+
+.wrap{
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
+  background: #f2f2f2;
+}
+.wrapper{
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.btn:hover{
+    opacity: .4;
+    transition: all ease .8s;
+}
+
+.title{
+    font-size: 30px;
+    font-weight: bold;
+    color: #009357;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+/*
+ * ヘッダー
+ *
+ */
+ 
+header{
+  padding:20px 0;
+  text-align: center;
+  font-size: 20px;
+  background-color: #ffffff
+}
+
+header .heaer_nav{
+  display: flex;
+  justify-content:space-around;
+  list-style: none;
+}
+.nav-link{
+  color: #444;
+}
+
+/*
+ *index.blade.php
+ *top eyecatch design
+ */
+.top_title_bg{
+  background-image: url('https://pont-storage-heroku.s3-ap-northeast-1.amazonaws.com/images/eye_catch/eye_catch3.JPG');
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding:200px 0;
+  opacity: 0.8;
+  background-attachment: fixed;
+}
+
+.top_title{
+  color: #ffffff;
+  opacity: .8;
+  font-size: 60px;
+}
+
+.pc_flex {
+    display: flex;
+    padding-top: 20px;
+}
+
+.pc_flex .pc_left_block {
+    margin-right: 20px;
+    width: 70%;
+}
+
+.pc_flex .pc_right_block {
+    margin-left: 20px;
+    max-width: 30%;
+}
+
+
+
+
+
+/* 
+ *fotter
+ *CSS
+ */
+ 
+footer{
+  text-align: left;
+
+}
+footer .footer_content{
+  background: #000;
+  padding: 60px 40px 10px;
+  color: #fff;
+}
+.footer_content .footer_inner{
+  padding-bottom:10px;
+  display: flex;
+}
+.footer_content .footer_inner .footer_block{
+  padding-bottom: 15px;
+}
+.footer_content .footer_inner .footer_block h2{
+  padding-bottom: 5px;
+  font-size: 15px;
+}
+.footer_content .footer_inner .footer_block ul li{
+  display: inline-block;
+}
+.footer_content .footer_inner .footer_block ul li a{
+  font-size: 12px;
+  padding: 0 10px;
+  color: #fff;
+  border-right: #fff solid 1px;
+  position: relative;
+}
+
+.footer_content .footer_inner .footer_block ul li a::after{
+  position: absolute;
+  bottom: -4px;
+  right: -10px;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  transform: scale(0, 1);
+  transform-origin: right top;
+  transition: transform .3s;
+}
+.footer_content .footer_inner .footer_block ul li a:hover::after{
+  transform-origin: left top;
+  transform: scale(1, 1);
+}
+
+.footer_content .copyright{
+  font-size:12px;
+  text-align: center;
+}
+
+
+/**
+ *マイページのCSS
+ *
+ */
+ .mypage_flex{
+   padding-top:50px !important;
+ }
+ 
+.sidebar{
+  margin-right:20px;
+  width: 30%;
+}
+
+.mypage_content{
+  margin-left:20px;
+  width: 70%;
+}
+
+.mp_intro{
+  width: 100%;
+  height: 200px;
+  position: relative;
+  background-image: url('https://pont-storage-heroku.s3-ap-northeast-1.amazonaws.com/images/eye_catch/eye_catch1.jpg');
+  background-size: cover;
+  background-position: center;
+  text-align: center
+}
+
+.mp-user-info{
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform:translate(0, -50%);
+  
+}
+
+.mp_stylist_img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  margin:0 auto;
+}
+
+.mp-user-name{
+  color: #333;
+}
+
+.profile{
+  background:#fff;
+  width: 100%;
+  padding:20px; 
+}
+
+ .sidebar_item{
+    background: #fff;
+    font-size: 14px;
+    color: #444;
+    padding: 16px;
+    min-height: 50px;
+    display: block;
+ }
+ 
+ .sidebar_list li{
+   border-top: 1px solid #eee;
+ }
+ 
+ .sidebar_list li:first-child{
+   border: 0;
+ }
+ 
