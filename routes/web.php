@@ -12,9 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('client/top');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/fetchStylist', 'HomeController@fetchStylist');
+Route::put('/home/{user}', 'HomeController@updateStylist')->name('home.update');
+Route::put('/home/mainImage/{user}', 'HomeController@updateStylistImage')->name('home.update');
