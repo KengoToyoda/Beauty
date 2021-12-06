@@ -44,7 +44,10 @@ class HomeController extends Controller
         $user->role = $request->role;
         $user->save();
         
-        $user = Auth::user();
+        // dd($user);
+        
+        // $user_id = Auth::id();
+        // $user = User::find($user_id);
         
         return response()->json($user);
     }
@@ -60,8 +63,8 @@ class HomeController extends Controller
             $user->save();
         }
         
-        $user_id = Auth::id();
-        $user = User::find($user_id);
+        // $user_id = Auth::id();
+        // $user = User::find($user_id);
         return response()->json($user);
     }
 }

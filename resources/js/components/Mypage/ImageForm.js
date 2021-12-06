@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { UpLoadBtn } from './UpLoadBtn';
 import axios from 'axios';
 
-import Container from '@mui/material/Container';
 
 const ImageContainer = styled.div`
     background-image: url(https://beauty-hair.s3.us-east-2.amazonaws.com/stylist/${props => props.imagedata});
@@ -18,7 +17,7 @@ const ImageContainer = styled.div`
     position:relative;
 `;
 
-export const Image = (props) => {
+export const ImageForm = (props) => {
     const [postFileData, setPostFileData] = useState('');
     
     const changeUploadFile = (e) => {
