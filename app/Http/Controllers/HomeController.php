@@ -63,8 +63,14 @@ class HomeController extends Controller
             $user->save();
         }
         
-        // $user_id = Auth::id();
-        // $user = User::find($user_id);
         return response()->json($user);
+    }
+    
+    /**
+     * ログインユーザデータ受け渡し
+     */
+    public function getUser()
+    {
+        return Auth::user();
     }
 }
