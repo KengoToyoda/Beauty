@@ -8,6 +8,8 @@ import Grid from '@mui/material/Grid';
 
 import  HomeBar  from './Nav/HomeBar';
 
+export const StylistData = React.createContext();
+
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -21,19 +23,19 @@ function Home(props) {
     return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <Item>
             <HomeBar />
           </Item>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={9}>
             <Item>
                 <h1>Mypage Top</h1>  
             </Item>
         </Grid>
       </Grid>
     </Box>
-    );
+  );
 }
 
 export default Home;

@@ -20,12 +20,12 @@ function Index(props) {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
-                <Grid item xs={4}>
+                <Grid item xs={3}>
                   <Item>
                     <HomeBar />
                   </Item>
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={9}>
                     <Item>
                         <h1>Catalog Top</h1>  
                     </Item>

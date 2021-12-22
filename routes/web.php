@@ -16,8 +16,9 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
     
     Route::get('/react/user', 'HomeController@getUser');
-    // Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/home/fetchStylist', 'HomeController@fetchStylist');
+    Route::get('/home/fetchMenu', 'MenuController@fetchMenu');
+    
     Route::put('/home/{user}', 'HomeController@updateStylist')->name('home.update');
     Route::put('/home/mainImage/{user}', 'HomeController@updateStylistImage')->name('home.update');
     
