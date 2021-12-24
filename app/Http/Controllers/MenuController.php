@@ -9,32 +9,6 @@ use Auth;
 
 class MenuController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request, Menu $menu)
     {
         if($request->image){
@@ -53,49 +27,37 @@ class MenuController extends Controller
         $menus = Menu::all();
         return response()->json($menus);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    
+    public function update(Request $request, Menu $menu)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
+        if($request->image){
+            Storage::disk('s3')->delete('menu/' . $menu->image); //元の画像を削除☆
+            $photo = $request->image;
+            $photo_name = $photo->getClientOriginalName();
+            Storage::disk('s3')->putFileAs('menu/',$photo,$photo_name);
+            $menu->image = $photo_name;
+        }
+        $menu->title = $request->title;
+        $menu->desc = $request->desc;
+        $menu->price = $request->price;
+        $menu->time = $request->time;
+        // $menu->user_id = Auth::id();
+        $menu->save();
         
+        $menus = Menu::all();
+        return response()->json($menus);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function fetchMenus()
     {
-        //
+        $user_id = Auth::id();
+        $menus = Menu::where('user_id', $user_id)->get();
+        
+        return response()->json($menus);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    
+    public function fetchMenu(Menu $menu)
     {
-        //
+        return response()->json($menu);
     }
 }

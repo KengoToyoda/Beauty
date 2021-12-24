@@ -23,14 +23,11 @@ export const MainForm = (props) => {
     }, [])
     
     const onSubmit = data => {
-        console.log(data);
         axios
         .put(`/home/${props.stylistId}`, data)
         .then(response => {
-            console.log(response.data);
             props.onSetStylist(response.data)
-                        alert('保存が完了しました');
-
+            alert('保存が完了しました');
         })
           .catch(error => {
             console.log(error);

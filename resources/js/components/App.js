@@ -10,7 +10,8 @@ import Top from './Main/Top';
 import Home from './Mypage/Home'
 import Header from './Layout/Header'
 import Footer from './Layout/Footer'
-import MenuTop from './Mypage/Menu/Index'
+import MenuCreate from './Mypage/Menu/Create/Create'
+import MenuIndex from './Mypage/Menu/Index/Index'
 import CatalogTop from './Mypage/Catalog/Index'
 import ProfileTop from './Mypage/Profile/Index'
 
@@ -34,7 +35,8 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Top />} />
                     <Route path="home" element={<Home />} />
-                        <Route path="home/menu" element={<MenuTop />} />
+                        <Route path="home/menu" element={<MenuIndex />} />
+                        <Route path="home/menu/create" element={<MenuCreate />} />
                         <Route path="home/catalog" element={<CatalogTop />} />
                         <Route path="home/profile" element={<ProfileTop />} />
                 </Routes>
