@@ -29,7 +29,6 @@ export const ImageForm = (props) => {
         Params.append(
             'image', fileData
         );
-        console.log(Params);
         Params.append('_method', 'PUT');
         axios.post(`/home/mainImage/${props.stylistId}`, Params, {
             headers: {

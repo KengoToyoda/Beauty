@@ -25,7 +25,7 @@ const style = {
 
 function Show(props) {
     
-  const { open, menuState, handleOpen, ImageUrl } = useContext(MenuModalData);
+  const { open, menuState, ImageUrl, id } = useContext(MenuModalData);
   
   return (
       <Fade in={open}>
@@ -38,7 +38,7 @@ function Show(props) {
             alt="green iguana"
           />
           <Typography id="transition-modal-title" variant="h6" component="h2">
-              {menuState['title']}
+            {menuState['title']}
           </Typography>
           <Typography id="transition-modal-description" >
             {menuState['desc']}
@@ -54,5 +54,5 @@ function Show(props) {
   );
 }
 
-export default Show;
+export default React.forwardRef((props, ref) => <Show {...props} forwardedRef={ref} />);
 

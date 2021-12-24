@@ -1,7 +1,6 @@
 import React ,{ useEffect, useState, useContext }from 'react';
 import { styled } from '@mui/material/styles';
-// import axios from 'axios';
-import { createTheme } from '@mui/material/styles';
+import axios from 'axios';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -49,30 +48,44 @@ const MenuTextFiled = styled(CardContent)`
 export const MenuModalData = React.createContext();
 
 function List(props) {
-    const { menus, setMenus } = useContext(StylistMenu);
+    const { menus } = useContext(StylistMenu);
     const ImageUrl = "https://beauty-hair.s3.us-east-2.amazonaws.com/menu/";
     
+    //Modal関連
     const [open, setOpen] = useState(false);
-    const [menuState, setMenuState] = useState('');
-    console.log(menuState);
-    const handleOpen = (option) => {
-        // console.log(menuInfo);
-        console.log(option);
-        // setMenuState(menuInfo);
-        // setOpen(true);
-        // setAnchorEl(null);
-    }
     const handleClose = () => setOpen(false);
+    const handleOpen = () => {
+        setOpen(true);
+        setAnchorEl(null);
+    }
     
+    //メニュー情報の管理
+    const [menuState, setMenuState] = useState('');
+    const [id, setId] = useState('');
+    //Id検索でメニュー情報を取得
+    useEffect(() => {
+        axios
+        .get(`/home/fetchMenu/${id}`)
+        .then(response => {
+            setMenuState(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }, [id])
+    
+    //3点リーダー関連
+    const [option, setOption] = useState('');
     const [anchorEl, setAnchorEl] = React.useState(null);
     const anchorElOpen = Boolean(anchorEl);
-    console.log(anchorElOpen);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
     const anchorElClose = () => {
-         setAnchorEl(null);
+        anchorElOpen = null;
     };
+    
+    //useContext関連
     const value = {
        open, 
        setOpen,
@@ -80,22 +93,18 @@ function List(props) {
        setMenuState,
        handleOpen,
        handleClose,
-       ImageUrl
+       ImageUrl,
+       option,
+       setOption,
+       id,
+       setId
     };
     
     return (
             <div>
                 <MenuBox>
                     {menus.map((menu) => {
-                        const menuInfo = {
-                            'id': menu.id,
-                            'title': menu.title,
-                            'desc': menu.desc,
-                            'price': menu.price,
-                            'time': menu.time,
-                            'image': menu.image,
-                        }
-                        return (
+                        return(
                             <MenuCard key={menu.id}>
                                 <CardHeader
                                     action={
@@ -106,7 +115,10 @@ function List(props) {
                                                 aria-controls="long-menu"
                                                 aria-expanded={anchorElOpen ? 'true' : undefined}
                                                 aria-haspopup="true"
-                                                onClick={handleClick}
+                                                onClick={(e) => {
+                                                    handleClick(e);
+                                                    setId(menu.id)
+                                                }}
                                             >
                                                 <MoreVertIcon />
                                             </IconButton>
@@ -125,18 +137,20 @@ function List(props) {
                                                   },
                                                 }}
                                             >
-                                                {options.map((option) => {
-                                                    // menuInfo['content'] = option; 
-                                                    // console.log(menuInfo);
-                                                    return(
-                                                        <MenuItem 
-                                                            key={option} 
-                                                            onClick={() => handleOpen(option)}
-                                                        >
-                                                        {option}
-                                                        </MenuItem>
-                                                    )
-                                                })}
+                                                <MenuItem 
+                                                  onClick={() => {
+                                                    handleOpen();
+                                                    setOption('詳細');
+                                                }}>
+                                                詳細 
+                                                </MenuItem>
+                                                <MenuItem 
+                                                  onClick={() => {
+                                                    handleOpen();
+                                                    setOption('編集');
+                                                }}>
+                                                編集  
+                                                </MenuItem>
                                             </Menu>
                                           </div>
                                       }
@@ -153,7 +167,6 @@ function List(props) {
                                         {menu.desc}
                                     </Typography>
                                 </MenuTextFiled>
-                                
                             </MenuCard>
                         )
                     })}
@@ -161,9 +174,11 @@ function List(props) {
                 <MenuModalData.Provider value={value}>
                     <MenuModal />
                 </MenuModalData.Provider >
+                
             </div>
         )
     }
 
-export default List;
+// export default List;
+export default React.forwardRef((props, ref) => <List {...props} forwardedRef={ref} />);
 
