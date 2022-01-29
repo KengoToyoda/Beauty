@@ -264,3 +264,20 @@ footer .footer_content{
    border: 0;
  }
  
+ 
+ /*
+  * React-slick
+  * prev/nextボタン部分
+  */
+  .slick-next:before {
+    color: #000!important;
+    left:0;
+  }
+  
+  .slick-prev:before {
+    color: #000!important;
+    right:0;
+  }
+  
+  
+ 

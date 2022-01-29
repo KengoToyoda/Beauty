@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useForm, Controller } from "react-hook-form";
+import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import axios from 'axios';
 
@@ -33,7 +34,9 @@ const ImageContiner = styled.div`
 
 
 function Confirm(props) {
-    const { currentState, imageUrl, imageData, stylist } = useContext(UserInputData);
+    const { currentState, imageFileUrl, imageData } = useContext(UserInputData);
+    const navigate = useNavigate();
+    
     const onSubmit = () => {
         const Params = new FormData();
         Params.append('image', imageData);
@@ -42,15 +45,13 @@ function Confirm(props) {
         Params.append('price', currentState['Menu']['price']);
         Params.append('time', currentState['Menu']['time']);
         
-        axios.post(`/home/menu/${stylist.id}`, Params, {
+        axios.post('/home/menu/', Params, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
         })
         .then(response => {
-            console.log(response.data);
-            
-            alert('成功')
+            navigate('/home/menu');
         })
         .catch(error => {
             console.log(error);
@@ -106,7 +107,7 @@ function Confirm(props) {
                         }
                         <TableRow >
                         <TableCell style={{ width: 200 , textAlign: 'center' }}>画像</TableCell>
-                        <ImageContiner imageurl={imageUrl}></ImageContiner>
+                        <ImageContiner imageurl={imageFileUrl}></ImageContiner>
                         </TableRow>
                     </TableBody>
                     

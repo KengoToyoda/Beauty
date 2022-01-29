@@ -12,7 +12,8 @@ import Header from './Layout/Header'
 import Footer from './Layout/Footer'
 import MenuCreate from './Mypage/Menu/Create/Create'
 import MenuIndex from './Mypage/Menu/Index/Index'
-import CatalogTop from './Mypage/Catalog/Index'
+import CatalogIndex from './Mypage/Catalog/Index/Index'
+import CatalogCreate from './Mypage/Catalog/Create/Create'
 import ProfileTop from './Mypage/Profile/Index'
 
 function App() {
@@ -37,7 +38,8 @@ function App() {
                     <Route path="home" element={<Home />} />
                         <Route path="home/menu" element={<MenuIndex />} />
                         <Route path="home/menu/create" element={<MenuCreate />} />
-                        <Route path="home/catalog" element={<CatalogTop />} />
+                        <Route path="home/catalog" element={<CatalogIndex />} />
+                        <Route path="home/catalog/create" element={<CatalogCreate />} />
                         <Route path="home/profile" element={<ProfileTop />} />
                 </Routes>
             <Footer/>

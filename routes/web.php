@@ -19,12 +19,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home/fetchStylist', 'HomeController@fetchStylist');
     Route::get('/home/fetchMenu', 'MenuController@fetchMenus');
     Route::get('/home/fetchMenu/{menu}', 'MenuController@fetchMenu');
+    Route::get('/home/fetchCatalog', 'CatalogController@fetchCatalogs');
     
     Route::put('/home/{user}', 'HomeController@updateStylist')->name('home.update');
     Route::put('/home/mainImage/{user}', 'HomeController@updateStylistImage')->name('home.update');
     
-    Route::post('/home/menu/{menu}', 'MenuController@store');
+    Route::post('/home/menu/', 'MenuController@store');
     Route::put('/home/menu/{menu}', 'MenuController@update');
+    
+    Route::post('/home/catalog/', 'CatalogController@store');
+    // Route::post('/home/catalog/{catalog}', 'CatalogController@store');
     
     Route::get('/{any}', function(){
         return view('client/top');

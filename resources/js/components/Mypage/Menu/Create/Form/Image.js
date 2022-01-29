@@ -9,23 +9,22 @@ import { UserInputData } from "../Create";
 function Image(props) {
     
     const { handleSubmit, register } = useForm();
-    const { setImageUrl, setImageData} = useContext(UserInputData);
+    const { setImageFileUrl, setImageData, imageData, imageFileUrl} = useContext(UserInputData);
     
     const onSubmit = (data) => {
-            props.handleNext();
-        
         const file = data.image;
         if (file.length > 0){
-            console.log('画像');
-            var imageFile = file[0];
+            let imageFile = file[0];
+            let imageUrl = URL.createObjectURL(imageFile);
+            //プレビュー用Url保存
+            setImageFileUrl(imageUrl);
             //送信用Data保存
             setImageData(imageFile);
-            const imageUrl = URL.createObjectURL(imageFile);
-            //プレビュー用Url保存
-            setImageUrl(imageUrl);
         } else {
-            setImageUrl(null);
+            setImageFileUrl(null);
         }
+        
+        props.handleNext();
     };
     return(
         <Box>
