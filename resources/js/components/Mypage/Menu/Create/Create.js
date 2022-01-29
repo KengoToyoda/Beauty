@@ -24,7 +24,7 @@ export const UserInputData = React.createContext();
 
 function Create() {
     const [currentState, setCurrentState] = React.useState({});
-    const [imageUrl, setImageUrl] = useState();
+    const [imageFileUrl, setImageFileUrl] = useState();
     const [imageData, setImageData] = useState();
     const [stylist, setStylist] = useState();
     
@@ -42,8 +42,8 @@ function Create() {
     const value = {
         currentState,
         setCurrentState,
-        imageUrl,
-        setImageUrl,
+        imageFileUrl,
+        setImageFileUrl,
         imageData,
         setImageData,
         stylist,

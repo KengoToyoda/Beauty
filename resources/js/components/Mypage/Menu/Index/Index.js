@@ -17,7 +17,6 @@ const Item = styled(Paper)(({ theme }) => ({
 export const StylistMenu= React.createContext();
 
 function Index() {
-    // const [stylist, setStylist] = useState();
     const [menus, setMenus] = useState([]);
 
     const value = {
@@ -30,7 +29,6 @@ function Index() {
         .get('/home/fetchMenu')
         .then(response => {
             setMenus(response.data);
-            console.log(response.data)
         })
         .catch(error => {
             console.log(error);

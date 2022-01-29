@@ -82,7 +82,7 @@ function List(props) {
         setAnchorEl(event.currentTarget);
     };
     const anchorElClose = () => {
-        anchorElOpen = null;
+         setAnchorEl(null);
     };
     
     //useContext関連

@@ -33,11 +33,11 @@ function Edit(props) {
   const [previwFile, setPreviwFile] = useState('');
   
   const handleFile = (e) => {
-    console.log(e.target.files);
     var file = e.target.files
     if (file.length > 0){
         var imageFile = file[0];
         //送信用Data保存
+        console.log(imageFile);
         setImageData(imageFile);
         const imageInputFile = URL.createObjectURL(imageFile);
         //プレビュー用Url保存
@@ -82,7 +82,7 @@ function Edit(props) {
               component="img"
               height="500"
               width="700"
-              image={ImageUrl + menuState['image']}
+              // image={ImageUrl + menuState['image']}
               image={previwFile ? previwFile : ImageUrl + menuState['image']}
               alt={ menuState['image'] }
             />
@@ -91,7 +91,7 @@ function Edit(props) {
                 type="file"
                 accept="image/*,.png,.jpg,.jpeg,.gif"
                 multiple
-                name="name"
+                name="image"
                 onChange={handleFile}
             />
             <Controller
